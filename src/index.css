@@ -1,1 +1,116 @@
+
 @import "tailwindcss";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=UnifrakturMaguntia&family=IM+Fell+English+SC&display=swap');
+
+
+
+
+
+
+@layer base {
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+
+
+ html {
+   scroll-behavior: smooth;
+ }
+
+
+ body {
+   overflow-x: hidden;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+ }
+
+
+ ::selection {
+   background: #1d1d1b;
+   color: #e8e0d0;
+ }
+
+
+ ::-webkit-scrollbar {
+   width: 6px;
+   height: 6px;
+ }
+
+
+ ::-webkit-scrollbar-track {
+   background: #4a6d52;
+ }
+
+
+ ::-webkit-scrollbar-thumb {
+   background: #1d1d1b44;
+   border-radius: 3px;
+ }
+
+
+ img {
+   user-select: none;
+   -webkit-user-drag: none;
+ }
+}
+
+
+/* ─── Marquee Animations ─── */
+@keyframes marquee {
+ 0% { transform: translateX(0); }
+ 100% { transform: translateX(-20%); }
+}
+
+
+@keyframes marquee-slow {
+ 0% { transform: translateX(0); }
+ 100% { transform: translateX(-25%); }
+}
+
+
+@keyframes grain {
+ 0%, 100% { transform: translate(0, 0); }
+ 10% { transform: translate(-2%, -2%); }
+ 30% { transform: translate(1%, -3%); }
+ 50% { transform: translate(-1%, 2%); }
+ 70% { transform: translate(3%, 1%); }
+ 90% { transform: translate(-2%, 3%); }
+}
+
+
+.animate-marquee {
+ animation: marquee 25s linear infinite;
+}
+
+
+.animate-marquee-slow {
+ animation: marquee-slow 20s linear infinite;
+}
+
+
+.animate-grain {
+ animation: grain 8s steps(10) infinite;
+}
+
+
+/* ─── Hide scrollbar for horizontal scroll sections ─── */
+.scrollbar-hide {
+ -ms-overflow-style: none;
+ scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+ display: none;
+}
+
+
+/* ─── Responsive grid collapse ─── */
+@media (max-width: 768px) {
+ section {
+   grid-template-columns: 1fr !important;
+ }
+}
+
