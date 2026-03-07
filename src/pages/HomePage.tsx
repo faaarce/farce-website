@@ -11,7 +11,7 @@ const HeroName = () => {
     setTimeout(() => setLoaded(true), 300);
   }, []);
   return (
-    <section className="bg-[#1d1d1b] py-8 md:py-16 px-6 md:px-12 overflow-hidden">
+    <section className="bg-[#1d1d1b] border-[#C5BDB3] border-10 border-solid py-8 md:py-16 px-6 md:px-12 overflow-hidden">
       <div
         className="font-['Playfair_Display'] text-6xl md:text-[12vw] lg:text-[190px] font-black text-[#e8e0d0] leading-[0.88] tracking-tighter uppercase text-center transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
         style={{

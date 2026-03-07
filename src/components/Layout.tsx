@@ -1,20 +1,51 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { Nav, MenuOverlay } from "./Nav";
+import { motion } from "motion/react";
+import { MenuOverlay, Nav } from "./Nav";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [introDone, setIntroDone] = useState(false);
+  const hasPlayed = useRef(false);
   const location = useLocation();
 
-  // Close menu on route change & scroll to top
+  // Close menu + scroll top on route change
   useEffect(() => {
     setMenuOpen(false);
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  // Lock scroll during intro
+  useEffect(() => {
+    if (hasPlayed.current) return;
+    hasPlayed.current = true;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  const handleAnimationComplete = () => {
+    setIntroDone(true);
+    document.body.style.overflow = "";
+  };
+
   return (
-    <div className="min-h-screen bg-[#4a6d52] flex justify-center">
-      <div className="w-full max-w-[1400px] bg-[#e8e0d0] relative shadow-[0_0_80px_rgba(0,0,0,0.35),inset_0_0_100px_rgba(0,0,0,0.02)]">
+    <div className="min-h-screen bg-[#1d1d1b] flex justify-center overflow-hidden">
+      <motion.div
+        className="w-full max-w-[1400px] bg-[#e8e0d0] relative shadow-[0_0_80px_rgba(0,0,0,0.35),inset_0_0_100px_rgba(0,0,0,0.02)]"
+        initial={{ y: "100vh", rotate: -12, scale: 0.45 }}
+        animate={{ y: 0, rotate: 0, scale: 1 }}
+        transition={{
+          duration: 1.8,
+          ease: [0.16, 1, 0.3, 1],
+          y: { duration: 1.6, ease: [0.16, 1, 0.3, 1] },
+          rotate: { duration: 1.8, ease: [0.16, 1, 0.3, 1] },
+          scale: { duration: 2.0, ease: [0.16, 1, 0.3, 1] },
+        }}
+        style={{ transformOrigin: "center bottom" }}
+        onAnimationComplete={handleAnimationComplete}
+      >
         {/* Paper grain overlay */}
         <div
           className="absolute -inset-[20%] opacity-[0.025] bg-repeat animate-grain pointer-events-none z-[2] mix-blend-multiply"
@@ -28,7 +59,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <MenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} />
           {children}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
