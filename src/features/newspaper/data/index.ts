@@ -1,5 +1,11 @@
 import type { Stat, Experience, Skill } from "../types";
 
+export interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+}
+
 export const stats: Stat[] = [
   { sub: "IOS PROJECTS", label: "BUILT", value: "4+" },
   { sub: "TECH STACKS", label: "MASTERED", value: "8" },
@@ -52,6 +58,33 @@ export const skills: Skill[] = [
     items:
       "Apache Airflow · Kafka CDC · Debezium · ETL Pipelines · Docker · Git · Firebase Auth · PostgreSQL Optimization",
   },
+];
+
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      "Faris delivered a polished iOS app ahead of schedule. His attention to UI detail and clean architecture made the codebase a joy to maintain.",
+    name: "PHINCON TEAM",
+    role: "Bootcamp Mentor",
+  },
+  {
+    quote:
+      "Strong technical foundation paired with genuine curiosity. Faris consistently improved our codebase quality during his internship with thoughtful MVC implementations.",
+    name: "MOJADI LEAD",
+    role: "Engineering Manager",
+  },
+  {
+    quote:
+      "An adaptable developer who bridges iOS and web seamlessly. His full-stack perspective brings valuable insight to every project discussion.",
+    name: "MYEDUSOLVE",
+    role: "Program Coordinator",
+  },
+];
+
+export const aboutParagraphs = [
+  "I am a Computer Science graduate from Padjadjaran University with a deep passion for building software that solves real problems. My journey started with iOS development — crafting native apps with Swift, UIKit, and reactive patterns using RxSwift.",
+  "Over time, I expanded into full-stack territory: building RESTful backends with Golang and Spring Boot, designing modern frontends with React and Next.js, and orchestrating data pipelines with Apache Airflow and Kafka. I thrive at the intersection of clean code and great user experience.",
+  "When I'm not coding, I'm exploring new frameworks, contributing to open-source, or sharpening my algorithm skills through structured problem-solving challenges.",
 ];
 
 export const MARQUEE_REPEAT_COUNT = 6;

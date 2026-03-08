@@ -1,18 +1,19 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAnimationControls } from "motion/react";
-import type { AnimationPhase } from "../types";
+import { useAtom, useAtomValue } from "jotai";
+import { animationPhaseAtom, isExpandedAtom } from "../store";
 
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export function useEntranceAnimation() {
   const controls = useAnimationControls();
-  const [phase, setPhase] = useState<AnimationPhase>("initial");
+  const [, setPhase] = useAtom(animationPhaseAtom);
+  const isExpanded = useAtomValue(isExpandedAtom);
 
   useEffect(() => {
     const runSequence = async () => {
       await delay(200);
 
-      // Slide down
       setPhase("sliding");
       await controls.start({
         y: "60vh",
@@ -21,14 +22,12 @@ export function useEntranceAnimation() {
 
       await delay(200);
 
-      // Spin
       setPhase("rotating");
       await controls.start({
         rotate: -1080,
         transition: { duration: 2, ease: [0.4, 0, 0.2, 1] },
       });
 
-      // Zoom to full
       setPhase("zooming");
       await controls.start({
         scale: 1,
@@ -43,9 +42,7 @@ export function useEntranceAnimation() {
 
     const timer = setTimeout(runSequence, 300);
     return () => clearTimeout(timer);
-  }, [controls]);
+  }, [controls, setPhase]);
 
-  const isExpanded = phase === "expanded";
-
-  return { controls, phase, isExpanded };
+  return { controls, isExpanded };
 }

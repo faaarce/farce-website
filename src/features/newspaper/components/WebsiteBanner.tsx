@@ -10,12 +10,13 @@ const WebsiteBanner: FC = () => (
       </h2>
     </div>
     <div className="border-l border-[#b5b0a8] px-5 py-4 flex flex-col items-center justify-center">
-      <div
-        className={`${imgB} w-[60px] h-[60px] rounded-sm mb-2 overflow-hidden`}
-      >
+      <div className={`${imgB} w-[60px] h-[60px] rounded-sm mb-2 overflow-hidden`}>
         <img
           src={IMAGES.portrait}
-          alt="Faris"
+          alt="Faris profile stamp"
+          loading="lazy"
+          width={60}
+          height={60}
           className="w-full h-full object-cover"
         />
       </div>

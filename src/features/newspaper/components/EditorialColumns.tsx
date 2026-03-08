@@ -10,7 +10,7 @@ const EditorialColumns: FC = () => (
       <h3 className="font-extrabold text-[17px] uppercase text-[#2a2a2a] mb-2.5 -tracking-[0.01em]">
         UPCOMING NEXT
       </h3>
-      <div className="w-[30px] h-0.5 bg-[#2a2a2a] mb-2.5" />
+      <div className="w-[30px] h-0.5 bg-[#2a2a2a] mb-2.5" aria-hidden="true" />
       <p className={`${just} text-[13px] text-[#444] leading-[1.6] mb-3`}>
         Fresh entry — A selected work from the latest digital releases.
       </p>
@@ -21,7 +21,10 @@ const EditorialColumns: FC = () => (
     <div className={`${colR} px-[18px] py-5`}>
       <img
         src={IMAGES.timepad}
-        alt="Timepad App"
+        alt="Timepad — time management application"
+        loading="lazy"
+        width={400}
+        height={250}
         className={`${imgB} w-full aspect-[16/10] object-cover mb-2.5 block`}
       />
       <div className={`${lbl} mb-1`}>FEATURED PROJECT</div>
@@ -43,7 +46,7 @@ const EditorialColumns: FC = () => (
         DELIVER
       </h3>
       <p className={`${just} text-sm text-[#333] leading-[1.65] mb-3`}>
-        <span className="float-left text-[44px] font-extrabold leading-[0.75] mr-[5px] mt-[5px] text-[#2a2a2a]">
+        <span className="float-left text-[44px] font-extrabold leading-[0.75] mr-[5px] mt-[5px] text-[#2a2a2a]" aria-hidden="true">
           A
         </span>
         &nbsp;strong project is created by deep collaboration. I design,
